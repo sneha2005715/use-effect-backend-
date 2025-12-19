@@ -1,0 +1,119 @@
+a) Component Lifecycle in React Functional Components
+
+React functional components me lifecycle phases ko useEffect hook ke through handle kiya jata hai.
+
+🔹 Mount Phase
+
+(Component jab first time render hota hai)
+
+useEffect(() => {
+  // runs only once when component mounts
+}, []);
+
+
+📌 Explanation:
+
+Empty dependency array [] ka matlab hai effect sirf ek baar chalega
+
+Ye componentDidMount ke jaisa behave karta hai
+
+Common use cases:
+
+API calls
+
+Initial data loading
+
+Event listeners add karna
+
+🔹 Update Phase
+
+(Component jab re-render hota hai due to state/props change)
+
+useEffect(() => {
+  // runs whenever dependencies change
+}, [dependencies]);
+
+
+📌 Explanation:
+
+Effect tabhi chalega jab dependency change hogi
+
+Ye componentDidUpdate jaisa behave karta hai
+
+Common use cases:
+
+Conditional logic
+
+State change ke base par actions
+
+Alerts, calculations, validations
+
+🔹 Unmount Phase
+
+(Component jab DOM se remove hota hai)
+
+useEffect(() => {
+  return () => {
+    // cleanup logic
+  };
+}, []);
+
+
+📌 Explanation:
+
+Cleanup function component ke unmount hone par run hota hai
+
+Ye componentWillUnmount ka replacement hai
+
+b) What is a Cleanup Function? Why Is It Needed?
+🔹 What is a Cleanup Function?
+
+Cleanup function ek return function hota hai jo useEffect ke andar likha jata hai.
+
+useEffect(() => {
+  // setup logic
+
+  return () => {
+    // cleanup logic
+  };
+}, []);
+
+🔹 Why Is It Needed?
+
+Cleanup function use hota hai to:
+
+Memory leaks prevent karne ke liye
+
+Unnecessary background tasks stop karne ke liye
+
+Performance improve karne ke liye
+
+🔹 Common Cleanup Examples
+
+Event listeners remove karna
+
+Timers (setInterval, setTimeout) clear karna
+
+Subscriptions cancel karna
+
+WebSocket connections close karna
+
+🔹 Example
+useEffect(() => {
+  const timer = setInterval(() => {
+    console.log("Running...");
+  }, 1000);
+
+  return () => {
+    clearInterval(timer);
+  };
+}, []);
+
+
+📌 Agar cleanup nahi karenge:
+
+Timer background me chalta rahega
+
+App slow ho sakta hai
+
+Memory leak ho sakta hai
