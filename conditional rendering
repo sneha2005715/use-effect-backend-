@@ -1,0 +1,42 @@
+import { useState } from "react";
+
+// ComponentA
+function ComponentA() {
+  return <h2>Status is TRUE</h2>;
+}
+
+// ComponentB
+function ComponentB() {
+  return <h2>Status is FALSE</h2>;
+}
+
+// Main Component
+function StatusToggle() {
+  const [status, setStatus] = useState(false);
+
+  return (
+    <div>
+      <button onClick={() => setStatus(!status)}>
+        Toggle Status
+      </button>
+
+      {status ? <ComponentA /> : <ComponentB />}
+    </div>
+  );
+}
+
+
+
+Explanation (short & clear)
+
+status state is managed using useState(false)
+
+Button click toggles status
+
+Conditional rendering (? :) decides which component to show:
+
+true → ComponentA
+
+false → ComponentB
+
+export default StatusToggle;
