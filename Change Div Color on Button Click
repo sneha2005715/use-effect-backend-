@@ -1,0 +1,37 @@
+import { useState } from "react";
+
+function ColorToggle() {
+  const [isRed, setIsRed] = useState(true);
+
+  return (
+    <div>
+      <div
+        style={{
+          color: isRed ? "red" : "blue",
+          fontSize: "20px",
+          fontWeight: "bold",
+        }}
+      >
+        This text changes color
+      </div>
+
+      <button onClick={() => setIsRed(!isRed)}>
+        Toggle Color
+      </button>
+    </div>
+  );
+}
+
+How it works
+
+useState(true) → initial color red
+
+Button click toggles state
+
+Conditional inline styling changes color:
+
+true → red
+
+false → blue
+
+export default ColorToggle;
